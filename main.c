@@ -39,7 +39,6 @@
  * @brief   Hello World!
  * @details This example uses the UART to print to a terminal and flashes an LED.
  */
-
 /***** Includes *****/
 #include <stdio.h>
 #include <stdint.h>

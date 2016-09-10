@@ -1,0 +1,320 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="Other C/C++"
+    WorkingDir=".">
+    <Config
+        Name="Debug"
+        Type="cpp"
+        DebugCallbackName="gdb"
+        OutputFile="%bdflow.elf"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='cc -c -g %i %defd -o "%bd%n.o" "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link">
+                <Exec CmdLine='cc -g -o "%o" %f %libs'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine="build.cmd"/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine="build.cmd clean"/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='vsdebugio -prog "%o"'/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%o"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Config
+        Name="Release"
+        Type="cpp"
+        DebugCallbackName="gdb"
+        OutputFile="%bdflow.elf"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveCurrent"
+                OutputExts="*.o"
+                RunFromDir="%rw">
+                <Exec CmdLine='cc -c -O %i %defd -o "%bd%n.o" "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link">
+                <Exec CmdLine='cc -O -o "%o" %f %libs'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine="build.cmd"/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine="build.cmd clean"/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='vsdebugio -prog "%o"'/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%o"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Rules Name="Compile">
+        <Rule
+            InputExts="*.s"
+            OutputExts="*.o"
+            LinkObject="1">
+            <Exec CmdLine='as -o "%bd%n.o" "%f"'/>
+        </Rule>
+    </Rules>
+    <CustomFolders>
+        <Folder
+            Name="Source Files"
+            Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go"></Folder>
+        <Folder
+            Name="Header Files"
+            Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"></Folder>
+        <Folder
+            Name="Resource Files"
+            Filters="*.ico;*.cur;*.dlg"/>
+        <Folder
+            Name="Bitmaps"
+            Filters="*.bmp"/>
+        <Folder
+            Name="Other Files"
+            Filters=""></Folder>
+    </CustomFolders>
+    <Files AutoFolders="DirectoryView">
+        <Folder Name="../">
+            <F N="../main.c"/>
+            <F
+                N="../Makefile"
+                Type="Makefile"/>
+        </Folder>
+        <Folder Name="../max3263x">
+            <Folder Name="CMSIS">
+                <Folder Name="Device">
+                    <Folder Name="Maxim">
+                        <Folder Name="MAX3263X">
+                            <Folder Name="Include">
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/adc_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/aes_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/clkman_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/crc_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/flc_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/gpio_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/i2cm_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/i2cs_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/icc_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/ioman_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/maa_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/max3263x.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/mxc_device.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/owm_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/pmu_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/prng_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/pt_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/pwrman_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/pwrseq_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/rtc_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/spib_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/spim_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/spis_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/spix_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/sysman_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/system_max3263x.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/tmr_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/tpu_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/trim_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/uart_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/usb_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/wdt2_regs.h"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Include/wdt_regs.h"/>
+                            </Folder>
+                            <Folder Name="Source">
+                                <Folder Name="ARM">
+                                    <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Source/ARM/sub_main.c"/>
+                                </Folder>
+                                <Folder Name="GCC">
+                                    <F
+                                        N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Source/GCC/gcc.mk"
+                                        Type="Makefile"/>
+                                    <F
+                                        N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Source/GCC/max3263x.mk"
+                                        Type="Makefile"/>
+                                </Folder>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Source/heap.c"/>
+                                <F N="../max3263x/CMSIS/Device/Maxim/MAX3263X/Source/system_max3263x.c"/>
+                            </Folder>
+                        </Folder>
+                    </Folder>
+                </Folder>
+                <Folder Name="Include">
+                    <F N="../max3263x/CMSIS/Include/arm_common_tables.h"/>
+                    <F N="../max3263x/CMSIS/Include/arm_const_structs.h"/>
+                    <F N="../max3263x/CMSIS/Include/arm_math.h"/>
+                    <F N="../max3263x/CMSIS/Include/core_cm3.h"/>
+                    <F N="../max3263x/CMSIS/Include/core_cm4.h"/>
+                    <F N="../max3263x/CMSIS/Include/core_cm4_simd.h"/>
+                    <F N="../max3263x/CMSIS/Include/core_cmFunc.h"/>
+                    <F N="../max3263x/CMSIS/Include/core_cmInstr.h"/>
+                </Folder>
+            </Folder>
+            <Folder Name="MAX3263XPeriphDriver">
+                <Folder Name="Include">
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/adc.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/aes.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/clkman.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/crc.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/flc.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/gpio.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/i2cm.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/i2cs.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/icc.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/ioman.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/lp.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/maa.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/mxc_assert.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/mxc_config.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/mxc_errors.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/mxc_lock.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/mxc_sys.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/nvic_table.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/pmu.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/prng.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/pt.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/rtc.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/spim.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/spix.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/tmr.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/tmr_utils.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/uart.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/wdt.h"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Include/wdt2.h"/>
+                </Folder>
+                <Folder Name="Source">
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/adc.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/aes.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/clkman.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/crc.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/flc.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/gpio.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/i2cm.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/i2cs.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/icc.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/ioman.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/lp.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/maa.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/mxc_assert.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/mxc_sys.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/nvic_table.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/pmu.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/prng.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/pt.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/rtc.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/spim.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/spix.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/tmr.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/tmr_utils.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/uart.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/wdt.c"/>
+                    <F N="../max3263x/MAX3263XPeriphDriver/Source/wdt2.c"/>
+                </Folder>
+                <F
+                    N="../max3263x/MAX3263XPeriphDriver/Makefile"
+                    Type="Makefile"/>
+                <F
+                    N="../max3263x/MAX3263XPeriphDriver/periphdriver.mk"
+                    Type="Makefile"/>
+            </Folder>
+        </Folder>
+        <Folder Name="../max_board">
+            <Folder Name="EvKit_V1">
+                <Folder Name="Include">
+                    <F N="../max_board/EvKit_V1/Include/board.h"/>
+                </Folder>
+                <Folder Name="Source">
+                    <F N="../max_board/EvKit_V1/Source/board.c"/>
+                </Folder>
+                <F
+                    N="../max_board/EvKit_V1/board.mk"
+                    Type="Makefile"/>
+            </Folder>
+            <Folder Name="Include">
+                <F N="../max_board/Include/led.h"/>
+                <F N="../max_board/Include/max14690.h"/>
+                <F N="../max_board/Include/mx25.h"/>
+                <F N="../max_board/Include/nhd12832.h"/>
+                <F N="../max_board/Include/pb.h"/>
+            </Folder>
+            <Folder Name="Source">
+                <F N="../max_board/Source/led.c"/>
+                <F N="../max_board/Source/max14690.c"/>
+                <F N="../max_board/Source/mx25.c"/>
+                <F N="../max_board/Source/mx25_stub.c"/>
+                <F N="../max_board/Source/nhd12832.c"/>
+                <F N="../max_board/Source/pb.c"/>
+                <F N="../max_board/Source/stdio.c"/>
+            </Folder>
+        </Folder>
+    </Files>
+</Project>
