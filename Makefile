@@ -88,7 +88,7 @@ PROJ_CFLAGS+=-DMXC_ASSERT_ENABLE
 # Include external library makefiles here
 
 # Include the BSP
-BOARD_DIR=./board/$(BOARD)
+BOARD_DIR=./max_board/$(BOARD)
 include $(BOARD_DIR)/board.mk
 
 # Include the peripheral driver
