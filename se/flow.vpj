@@ -45,10 +45,10 @@
                 Name="Debug"
                 MenuCaption="&amp;Debug"
                 SaveOption="SaveNone"
-                BuildFirst="1"
-                CaptureOutputWith="ProcessBuffer"
                 RunFromDir="%rw">
-                <Exec CmdLine='vsdebugio -prog "%o"'/>
+                <Exec
+                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=2331,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;New Debugging Session&gt;"
+                    Type="Slick-C"/>
             </Target>
             <Target
                 Name="Execute"
@@ -102,10 +102,10 @@
                 Name="Debug"
                 MenuCaption="&amp;Debug"
                 SaveOption="SaveNone"
-                BuildFirst="1"
-                CaptureOutputWith="ProcessBuffer"
                 RunFromDir="%rw">
-                <Exec CmdLine='vsdebugio -prog "%o"'/>
+                <Exec
+                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=2331,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;New Debugging Session&gt;"
+                    Type="Slick-C"/>
             </Target>
             <Target
                 Name="Execute"

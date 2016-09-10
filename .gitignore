@@ -2,4 +2,4 @@ build/
 *.vpwhist
 *.vtg
 Debug/
-Release/
+Release/f
