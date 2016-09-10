@@ -1,0 +1,6 @@
+[submodule "max3263x"]
+	path = max3263x
+	url = git@github.com:mukymuk/max3263x.git
+[submodule "max_board"]
+	path = max_board
+	url = ./max_board
