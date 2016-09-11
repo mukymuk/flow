@@ -145,12 +145,14 @@
     </CustomFolders>
     <Files AutoFolders="DirectoryView">
         <Folder Name="../">
+            <F N="../global.h"/>
             <F N="../main.c"/>
             <F
                 N="../Makefile"
                 Type="Makefile"/>
             <F N="../max3510x.c"/>
             <F N="../max3510x.h"/>
+            <F N="../max3510x_regs.h"/>
         </Folder>
         <Folder Name="../max3263x">
             <Folder Name="CMSIS">

@@ -29,31 +29,14 @@
  * property whatsoever. Maxim Integrated Products, Inc. retains all
  * ownership rights.
  *
- * $Date: 2016-03-11 10:46:02 -0700 (Fri, 11 Mar 2016) $
- * $Revision: 21838 $
- *
  ******************************************************************************/
 
-/**
- * @file    main.c
- * @brief   Hello World!
- * @details This example uses the UART to print to a terminal and flashes an LED.
- */
-/***** Includes *****/
-#include <stdio.h>
-#include <stdint.h>
+#include "global.h"
 #include "mxc_config.h"
 #include "led.h"
 #include "nhd12832.h"
 #include "tmr_utils.h"
 
-/***** Definitions *****/
-
-/***** Globals *****/
-
-/***** Functions *****/
-
-// *****************************************************************************
 int main(void)
 {
     printf("Hello World!\n");
