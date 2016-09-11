@@ -39,7 +39,7 @@
                 CaptureOutputWith="ProcessBuffer"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine="build.cmd clean"/>
+                <Exec CmdLine="build.cmd clean"/>
             </Target>
             <Target
                 Name="Debug"
@@ -96,7 +96,7 @@
                 CaptureOutputWith="ProcessBuffer"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine="build.cmd clean"/>
+                <Exec CmdLine="build.cmd clean"/>
             </Target>
             <Target
                 Name="Debug"
@@ -149,6 +149,8 @@
             <F
                 N="../Makefile"
                 Type="Makefile"/>
+            <F N="../max3510x.c"/>
+            <F N="../max3510x.h"/>
         </Folder>
         <Folder Name="../max3263x">
             <Folder Name="CMSIS">
@@ -316,5 +318,7 @@
                 <F N="../max_board/Source/stdio.c"/>
             </Folder>
         </Folder>
+        <F N="build.cmd"/>
+        <F N="build.sh"/>
     </Files>
 </Project>

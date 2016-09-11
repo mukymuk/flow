@@ -56,7 +56,7 @@ LIBS_DIR=max3263x
 CMSIS_ROOT=$(LIBS_DIR)/CMSIS
 
 # Source files for this test (add path to VPATH below)
-SRCS  = main.c
+SRCS  = main.c max3510x.c
 
 # Where to find source files for this test
 VPATH=.
