@@ -33,4 +33,4 @@
 
 
 
-
+void max3510x_isr(void*);

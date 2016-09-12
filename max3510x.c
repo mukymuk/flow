@@ -215,4 +215,6 @@ void max3510x_init( void )
 	
 }
 
-
+void max3510x_isr(void*p)
+{
+}

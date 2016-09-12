@@ -36,14 +36,42 @@
 #include "led.h"
 #include "nhd12832.h"
 #include "tmr_utils.h"
+#include "max3510x.h"
+
+static const ioman_cfg_t ioman_cfg = IOMAN_SPIM0(IOMAN_MAP_A, 1, 1, 0, 0, 0, 0, 0);
+static const gpio_cfg_t max3510x_rst = { PORT_2, PIN_0, GPIO_FUNC_GPIO, GPIO_PAD_NORMAL };
+static const gpio_cfg_t max3510x_int = { PORT_2, PIN_1, GPIO_FUNC_GPIO, GPIO_PAD_INPUT_PULLUP };
+static const gpio_cfg_t max3510x_wdo = { PORT_2, PIN_2, GPIO_FUNC_GPIO, GPIO_PAD_INPUT_PULLUP };
+
 
 int main(void)
 {
-    printf("Hello World!\n");
+    printf("Flow Tedstbed\n");
+/*
+    SYS_IOMAN_UseVDDIOH(&max3510x_rst);
+    SYS_IOMAN_UseVDDIOH(&max3510x_int);
+    SYS_IOMAN_UseVDDIOH(&max3510x_wdo);
 
+    GPIO_OutSet(&max3510x_rst);
+    GPIO_Config(&max3510x_rst);
+	GPIO_OutClr(&max3510x_rst);
+    GPIO_Config(&max3510x_int);
+	GPIO_Config(&max3510x_wdo);
+
+    CLKMAN_SetClkScale(CLKMAN_CLK_SPIM2, CLKMAN_SCALE_DIV_2);
+
+    IOMAN_Config(&ioman_cfg);
+
+    GPIO_IntDisable(&max3510x_rst);
+    GPIO_IntConfig(&max3510x_rst, GPIO_INT_HIGH_LEVEL);  
+    GPIO_RegisterCallback(&max3510x_rst, max3510x_isr, NULL);
+    NVIC_EnableIRQ(MXC_GPIO_GET_IRQ(max3510x_rst.port));
+*/
     // Print to the OLED
     NHD12832_Init();
-    NHD12832_ShowString((uint8_t*)"Hello World!", 0, 4);
+    NHD12832_ShowString((uint8_t*)"Floddw Testbed", 0, 4);
+
+	GPIO_OutSet(&max3510x_rst);
 
     int count = 0;
     while(1) {

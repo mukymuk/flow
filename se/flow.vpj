@@ -322,5 +322,8 @@
         </Folder>
         <F N="build.cmd"/>
         <F N="build.sh"/>
+        <F N="debug.cmd"/>
+        <F N="debug.sh"/>
+        <F N="erase.cmd"/>
     </Files>
 </Project>
