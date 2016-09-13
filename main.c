@@ -46,7 +46,7 @@ static const gpio_cfg_t max3510x_wdo = { PORT_2, PIN_2, GPIO_FUNC_GPIO, GPIO_PAD
 
 int main(void)
 {
-    printf("Flow Tedstbed\n");
+    printf("Flow Testbed\n");
 /*
     SYS_IOMAN_UseVDDIOH(&max3510x_rst);
     SYS_IOMAN_UseVDDIOH(&max3510x_int);
@@ -69,7 +69,7 @@ int main(void)
 */
     // Print to the OLED
     NHD12832_Init();
-    NHD12832_ShowString((uint8_t*)"Floddw Testbed", 0, 4);
+    NHD12832_ShowString((uint8_t*)"Flow Testbed", 0, 4);
 
 	GPIO_OutSet(&max3510x_rst);
 

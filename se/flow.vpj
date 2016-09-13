@@ -47,7 +47,7 @@
                 SaveOption="SaveNone"
                 RunFromDir="%rw">
                 <Exec
-                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=2331,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;New Debugging Session&gt;"
+                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=3333,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;debug&gt; %rw\debug.cmd"
                     Type="Slick-C"/>
             </Target>
             <Target
@@ -104,7 +104,7 @@
                 SaveOption="SaveNone"
                 RunFromDir="%rw">
                 <Exec
-                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=2331,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;New Debugging Session&gt;"
+                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=3333,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;debug&gt; %rw\debug.cmd"
                     Type="Slick-C"/>
             </Target>
             <Target
