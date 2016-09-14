@@ -31,7 +31,45 @@
  *
  ******************************************************************************/
 
+typedef struct _rtc_date_t
+{
+	uint8_t	year;
+	uint8_t month;
+	uint8_t day_of_month;
+	uint8_t day_of_week;
+	uint8_t hour;
+	uint8_t minute;
+	uint8_t seconds;
+	uint8_t hundredths;
+}
+rtc_date_t;
 
+typedef enum 
+{
+    max3510x_event_timing_mode_1,
+    max3510x_event_timing_mode_2,
+    max3510x_event_timing_mode_3
+}
+max3510x_event_timing_mode_t;
+
+typedef enum
+{
+	max3510x_ldo_mode_timed,
+	max3510x_ldo_mode_on,
+	max3510x_ldo_mode_off
+}
+max3510x_ldo_mode_t;
 
 void max3510x_isr(void*);
 void max3510x_init(void);
+void max3510x_tof_up(void);
+void max3510x_tof_down(void);
+void max3510x_tof_diff(void);
+void max3510x_temperature(void);
+void max3510x_reset( void );
+void max3510x_initialize( void );
+void max3510x_flash_configuration( void );
+void max3510x_event_timing( max3510x_event_timing_mode_t mode );
+void max3510x_halt( void );
+void max3510x_ldo( max3510x_ldo_mode_t mode );
+void max3510x_calibrate( void );
