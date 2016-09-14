@@ -5,3 +5,4 @@
 [submodule "max_board"]
 	path = max_board
 	url = git@github.com:mukymuk/max_board
+	flow = flow

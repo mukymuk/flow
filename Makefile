@@ -35,7 +35,7 @@
  ###############################################################################
 
 # This is the name of the build output file
-PROJECT=max3263x
+PROJECT=flow
 
 # Specify the target processor
 TARGET=MAX3263x

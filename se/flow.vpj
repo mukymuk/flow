@@ -31,7 +31,7 @@
                 CaptureOutputWith="ProcessBuffer"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine="build.cmd"/>
+                <Exec CmdLine="build.cmd debug noclean"/>
             </Target>
             <Target
                 Name="Rebuild"
@@ -39,7 +39,7 @@
                 CaptureOutputWith="ProcessBuffer"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine="build.cmd clean"/>
+                <Exec CmdLine="build.cmd debug clean"/>
             </Target>
             <Target
                 Name="Debug"
@@ -47,7 +47,7 @@
                 SaveOption="SaveNone"
                 RunFromDir="%rw">
                 <Exec
-                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=3333,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;debug&gt; %rw\debug.cmd"
+                    CmdLine="gdb_load file=..\\build\\flow.elf,host=localhost,port=3333,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;debug&gt; %rw\debug.cmd"
                     Type="Slick-C"/>
             </Target>
             <Target
@@ -88,7 +88,7 @@
                 CaptureOutputWith="ProcessBuffer"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine="build.cmd"/>
+                <Exec CmdLine="build.cmd debug noclean"/>
             </Target>
             <Target
                 Name="Rebuild"
@@ -96,7 +96,7 @@
                 CaptureOutputWith="ProcessBuffer"
                 SaveOption="SaveWorkspaceFiles"
                 RunFromDir="%rw">
-                <Exec CmdLine="build.cmd clean"/>
+                <Exec CmdLine="build.cmd debug clean"/>
             </Target>
             <Target
                 Name="Debug"
@@ -104,7 +104,7 @@
                 SaveOption="SaveNone"
                 RunFromDir="%rw">
                 <Exec
-                    CmdLine="gdb_load file=..\\build\\max3263x.elf,host=localhost,port=3333,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;debug&gt; %rw\debug.cmd"
+                    CmdLine="gdb_load file=..\\build\\flow.elf,host=localhost,port=3333,timeout=2,address=,cache=0,break=0,path=C:\\Maxim\\Toolchain\\bin\\arm-none-eabi-gdb.exe,args=,session=&lt;debug&gt; %rw\debug.cmd"
                     Type="Slick-C"/>
             </Target>
             <Target
@@ -323,7 +323,6 @@
         <F N="build.cmd"/>
         <F N="build.sh"/>
         <F N="debug.cmd"/>
-        <F N="debug.sh"/>
         <F N="erase.cmd"/>
     </Files>
 </Project>

@@ -37,41 +37,56 @@
 #include "nhd12832.h"
 #include "tmr_utils.h"
 #include "max3510x.h"
+#include "spim.h"
 
-static const ioman_cfg_t ioman_cfg = IOMAN_SPIM0(IOMAN_MAP_A, 1, 1, 0, 0, 0, 0, 0);
+static const ioman_cfg_t max3510x_ioman_cfg = IOMAN_SPIM0(1, 1, 0, 0, 0, 0, 0, 0);
 static const gpio_cfg_t max3510x_rst = { PORT_2, PIN_0, GPIO_FUNC_GPIO, GPIO_PAD_NORMAL };
 static const gpio_cfg_t max3510x_int = { PORT_2, PIN_1, GPIO_FUNC_GPIO, GPIO_PAD_INPUT_PULLUP };
 static const gpio_cfg_t max3510x_wdo = { PORT_2, PIN_2, GPIO_FUNC_GPIO, GPIO_PAD_INPUT_PULLUP };
+static const spim_cfg_t max3510x_spim_cfg = {1, SPIM_SSEL0_LOW, 1000000};
+//static const gpio_cfg_t max3510x_spi = { PORT_0, (PIN_4 | PIN_5 | PIN_6 | PIN_7), GPIO_FUNC_GPIO, GPIO_PAD_NORMAL };
 
+// The MAX3510x is connected to SPIM0A:
+
+//  P0.4 = SPMI0A_SCK
+//  P0.5 = SPIM0A_MOSI
+//  P0.6 = SPIM0A_MISO
+//  P0.7 = SPIM0A_SS0
 
 int main(void)
 {
     printf("Flow Testbed\n");
-/*
+
     SYS_IOMAN_UseVDDIOH(&max3510x_rst);
     SYS_IOMAN_UseVDDIOH(&max3510x_int);
     SYS_IOMAN_UseVDDIOH(&max3510x_wdo);
 
-    GPIO_OutSet(&max3510x_rst);
     GPIO_Config(&max3510x_rst);
-	GPIO_OutClr(&max3510x_rst);
+    GPIO_OutClr(&max3510x_rst);
     GPIO_Config(&max3510x_int);
-	GPIO_Config(&max3510x_wdo);
+    GPIO_Config(&max3510x_wdo);
 
-    CLKMAN_SetClkScale(CLKMAN_CLK_SPIM2, CLKMAN_SCALE_DIV_2);
+    sys_cfg_t sys_cfg;
+    sys_cfg.clk_scale = CLKMAN_SCALE_AUTO;
+    sys_cfg.io_cfg = max3510x_ioman_cfg;
+    if( SPIM_Init(MXC_SPIM0, &max3510x_spim_cfg, &sys_cfg) != E_NO_ERROR )
+    {
+        while(1);
+    }
 
-    IOMAN_Config(&ioman_cfg);
-
-    GPIO_IntDisable(&max3510x_rst);
-    GPIO_IntConfig(&max3510x_rst, GPIO_INT_HIGH_LEVEL);  
-    GPIO_RegisterCallback(&max3510x_rst, max3510x_isr, NULL);
+    GPIO_IntDisable(&max3510x_int);
+    GPIO_IntConfig(&max3510x_int, MXC_V_GPIO_INT_MODE_FALLING_EDGE);  
+    GPIO_RegisterCallback(&max3510x_int, max3510x_isr, NULL);
     NVIC_EnableIRQ(MXC_GPIO_GET_IRQ(max3510x_rst.port));
-*/
+    GPIO_IntEnable(&max3510x_int);
+
     // Print to the OLED
     NHD12832_Init();
     NHD12832_ShowString((uint8_t*)"Flow Testbed", 0, 4);
 
-	GPIO_OutSet(&max3510x_rst);
+    GPIO_OutSet(&max3510x_rst);
+
+    max3510x_init();
 
     int count = 0;
     while(1) {

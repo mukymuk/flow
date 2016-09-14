@@ -34,16 +34,26 @@
 #include "global.h"
 #include "max3510x.h"
 #include "max3510x_regs.h"
+#include "spim.h"
 
 
-static int32_t read_registers( uint8_t reg_offset, uint16_t *p_value, uint8_t count )
+static void spi_xfer( void *pv_in, const void *pv_out, uint8_t count )
 {
-	return 0;
-}
+    spim_req_t req;
+    req.ssel = 0;
+    req.deass = 1;
+    req.tx_data = pv_out;
+    req.rx_data = pv_in;
+    req.width = SPIM_WIDTH_1;
+    req.len = count;
 
-static int32_t write_registers( uint8_t reg_offset, uint16_t *p_value, uint8_t count )
-{
-	return 0;
+    if (SPIM_Trans(MXC_SPIM0, &req) != count)
+    {
+        while(1);
+    }
+
+    // Wait for transaction to complete
+    while(SPIM_Busy(MXC_SPIM0) != E_NO_ERROR) {}
 }
 
 
@@ -190,8 +200,9 @@ typedef struct _rtc_date_t
 }
 rtc_date_t;
 
-void max3510x_rtc_get( const uint16_t *p_rtc_data, rtc_date_t *p_date )
+void max3510x_rtc_get( rtc_date_t *p_date, const void *pv_rtc_data )
 {
+	const uint16_t * p_rtc_data = (const uint16_t*)pv_rtc_data;
 	p_date->year = rtc_get_year(p_rtc_data[MAX3510X_REG_MONTH_YEAR]);
 	p_date->month = rtc_get_month(p_rtc_data[MAX3510X_REG_MONTH_YEAR]);
 	p_date->day_of_month = rtc_get_day_of_month(p_rtc_data[MAX3510X_REG_DAY_DATE]);
@@ -210,9 +221,16 @@ void max3510x_rtc_set( uint16_t *p_rtc_data, const rtc_date_t *p_date )
 	p_rtc_data[MAX3510X_REG_MONTH_YEAR] = rtc_set_month( p_date->month ) | rtc_set_year( p_date->year );
 }
 
+#define MAX3510X_RTC_SIZE	9
+
 void max3510x_init( void )
 {
-	
+    rtc_date_t rtc_date;
+
+    uint8_t rtc[MAX3510X_RTC_SIZE+1];
+    rtc[0] = MAX3510X_OPCODE_READ_REG(MAX3510X_REG_SECONDS);
+	spi_xfer(NULL, rtc, sizeof(rtc));
+    max3510x_rtc_get( &rtc_date, &rtc[1] );
 }
 
 void max3510x_isr(void*p)
